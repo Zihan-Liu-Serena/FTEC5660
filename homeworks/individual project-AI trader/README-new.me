@@ -1,0 +1,370 @@
+<div align="center">
+  <picture>
+      <img src="./assets/AI-Trader-log.png" width="20%" style="border: none; box-shadow: none;">
+  </picture>
+</div>
+
+<div align="center">
+
+# 🚀 AI-Trader: Can AI Beat the Market?
+
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/HKUDS/AI-Trader?style=social)](https://github.com/HKUDS/AI-Trader)
+[![Feishu](https://img.shields.io/badge/💬Feishu-Group-blue?style=flat)](./Communication.md) 
+[![WeChat](https://img.shields.io/badge/WeChat-Group-green?style=flat&logo=wechat)](./Communication.md)
+<a href='https://arxiv.org/abs/2512.10971'><img src='https://img.shields.io/badge/arXiv-2512.10971-b31b1b'>
+
+**AI agents battle for supremacy in NASDAQ 100, SSE 50, and cryptocurrency markets. Zero human input. Pure competition.**
+
+## 🏆 Current Championship Leaderboard 🏆 
+[*Click Here: AI Live Trading*](https://ai4trade.ai)
+
+</div>
+
+---
+## Friends of AI-Trader: Other Interesting Projects
+- [TradeTrap](https://github.com/Yanlewen/TradeTrap): A security-focused toolkit to evaluate and harden LLM-based trading agents, featuring prompt injection and MCP hijacking attack modules for resilience testing.
+- [RockAlpha](https://rockalpha.rockflow.ai/): The investment arena launched by RockFlow.
+- [TwinMarket](https://github.com/FreedomIntelligence/TwinMarket): A multi-agent framework that leverages LLMs to simulate investor behavior in A-share market.
+
+---
+
+## 🎉 Weekly Update
+- ✅ **A-Share Market Support**
+- ✅ **Cryptocurrency Market Support**
+- ✅ **Hourly Trading Support**
+- ✅ **Live Trading Dashboard**: https://ai4trade.ai
+- ✅ **Agent Reasoning Display**
+- ✅ **Interactive Leaderboard**
+
+---
+
+## **How to use this dataset**
+Submit a PR with `./agent/{your_strategy}.py` and `./configs/{yourconfig}`. We will run it on our platform.
+
+---
+
+<div align="center">
+
+[🚀 Quick Start](#-quick-start) • [📈 Performance Analysis](#-performance-analysis) • [🛠️ Configuration Guide](#-configuration-guide) • [中文文档](README_CN.md)
+
+</div>
+
+## 🌟 Project Introduction
+> This reproduction focuses on **NASDAQ 100 hourly trading** with MiniMax‑M2 / DeepSeek‑v3.1, and studies **prompt engineering for risk control**.
+
+### 🎯 Core Features
+- 🤖 **Fully Autonomous Decision-Making**
+- 🛠️ **Pure Tool-Driven Architecture (MCP)**
+- 🏆 **Multi-Model Competition**
+- 📊 **Real-Time Performance Analytics**
+- 🔍 **Intelligent Market Intelligence**
+- ⚡ **MCP Toolchain Integration**
+- 🔌 **Extensible Strategy Framework**
+- ⏰ **Historical Replay Capability**
+
+---
+
+### 🎮 Trading Environment
+- 💰 **Initial Capital**: $10,000 USD
+- 📈 **Trading Universe**: NASDAQ 100
+- ⏰ **Trading Schedule**: Weekdays market hours
+- 📊 **Data**: Alpha Vantage + Jina AI
+
+---
+
+### 🧠 Agentic Trading Capabilities
+- 📰 **Autonomous Market Research**
+- 💡 **Independent Decision Engine**
+- 📝 **Comprehensive Trade Logging**
+- 🔄 **Adaptive Strategy Evolution**
+
+---
+
+### 🏁 Competition Rules
+- 💰 **Starting Capital**: $10,000
+- 📊 **Same data & tools for all models**
+- 📈 **Standard metrics**: CR, SR, MDD
+
+---
+
+## ⏰ Historical Replay Architecture
+- Flexible time range
+- Strict anti-look-ahead
+
+---
+
+## 📁 Project Architecture
+```
+AI-Trader Bench/
+├── 🤖 Core System
+│   ├── main.py                    # 🎯 Main program entry
+│   ├── agent/
+│   │   ├── base_agent/            # 🧠 Generic AI trading agent (US stocks)
+│   │   │   ├── base_agent.py      # Base agent class (daily)
+│   │   │   ├── base_agent_hour.py # Hourly trading agent (US stocks)
+│   │   │   └── __init__.py
+│   │   ├── base_agent_astock/     # 🇨🇳 A-share specific trading agent
+│   │   │   ├── base_agent_astock.py  # A-share agent class (daily)
+│   │   │   ├── base_agent_astock_hour.py # A-share hourly trading agent
+│   │   │   └── __init__.py
+│   │   └── base_agent_crypto/     # ₿ Cryptocurrency specific trading agent
+│   │       ├── base_agent_crypto.py # Crypto agent class
+│   │       └── __init__.py
+│   └── configs/                   # ⚙️ Configuration files
+│
+├── 🛠️ MCP Toolchain
+│   ├── agent_tools/
+│   │   ├── tool_trade.py          # 💰 Trade execution (auto-adapts market rules)
+│   │   ├── tool_get_price_local.py # 📊 Price queries (supports US + A-shares)
+│   │   ├── tool_jina_search.py   # 🔍 Information search
+│   │   ├── tool_math.py           # 🧮 Mathematical calculations
+│   │   └── start_mcp_services.py  # 🚀 MCP service startup script
+│   └── tools/                     # 🔧 Auxiliary tools
+│
+├── 📊 Data System
+│   ├── data/
+│   │   ├── daily_prices_*.json    # 📈 NASDAQ 100 stock price data
+│   │   ├── merged.jsonl           # 🔄 US stocks daily unified data format
+│   │   ├── get_daily_price.py     # 📥 US stocks data fetching script
+│   │   ├── merge_jsonl.py         # 🔄 US stocks data format conversion
+│   │   ├── A_stock/               # 🇨🇳 A-share market data
+│   │   │   ├── A_stock_data/              # 📁 A-share data storage directory
+│   │   │   │   ├── sse_50_weight.csv          # 📋 SSE 50 constituent weights
+│   │   │   │   ├── daily_prices_sse_50.csv    # 📈 Daily price data (CSV)
+│   │   │   │   ├── A_stock_hourly.csv         # ⏰ 60-minute K-line data (CSV)
+│   │   │   │   └── index_daily_sse_50.json    # 📊 SSE 50 index benchmark data
+│   │   │   ├── merged.jsonl               # 🔄 A-share daily unified data format
+│   │   │   ├── merged_hourly.jsonl        # ⏰ A-share hourly unified data format
+│   │   │   ├── get_daily_price_tushare.py # 📥 A-share daily data fetching (Tushare API)
+│   │   │   ├── get_daily_price_alphavantage.py # 📥 A-share daily data fetching (Alpha Vantage API)
+│   │   │   ├── get_interdaily_price_astock.py # ⏰ A-share hourly data fetching (efinance)
+│   │   │   ├── merge_jsonl_tushare.py     # 🔄 A-share daily data format conversion (Tushare API)
+│   │   │   ├── merge_jsonl_alphavantage.py # 🔄 A-share daily data format conversion (Alpha Vantage API)
+│   │   │   └── merge_jsonl_hourly.py      # ⏰ A-share hourly data format conversion (efinance)
+│   │   ├── crypto/                # ₿ Cryptocurrency market data
+│   │   │   ├── coin/                        # 📊 Individual crypto price files
+│   │   │   │   ├── daily_prices_BTC.json   # Bitcoin price data
+│   │   │   │   ├── daily_prices_ETH.json   # Ethereum price data
+│   │   │   │   └── ...                      # Other cryptocurrency data
+│   │   │   ├── crypto_merged.jsonl         # 🔄 Crypto unified data format
+│   │   │   ├── get_daily_price_crypto.py   # 📥 Crypto data fetching script
+│   │   │   └── merge_crypto_jsonl.py       # 🔄 Crypto data format conversion
+│   │   ├── agent_data/            # 📝 AI trading records (NASDAQ 100)
+│   │   ├── agent_data_astock/     # 📝 A-share AI trading records
+│   │   └── agent_data_crypto/     # 📝 Cryptocurrency AI trading records
+│   └── calculate_performance.py   # 📈 Performance analysis
+│
+├── 💬 Prompt System
+│   └── prompts/
+│       ├── agent_prompt.py        # 🌐 Generic trading prompts (US stocks)
+│       └── agent_prompt_astock.py # 🇨🇳 A-share specific trading prompts
+│
+├── 🎨 Frontend Interface
+│   └── frontend/                  # 🌐 Web dashboard
+│
+├── 📋 Configuration & Documentation
+│   ├── configs/                   # ⚙️ System configuration
+│   │   ├── default_config.json    # US stocks default configuration
+│   │   └── astock_config.json     # A-share configuration example
+│   └── calc_perf.sh              # 🚀 Performance calculation script
+│
+└── 🚀 Quick Start Scripts
+    └── scripts/                   # 🛠️ Convenient startup scripts
+        ├── main.sh                # One-click complete workflow (US stocks)
+        ├── main_step1.sh          # US stocks: Data preparation
+        ├── main_step2.sh          # US stocks: Start MCP services
+        ├── main_step3.sh          # US stocks: Run trading agent
+        ├── main_a_stock_step1.sh  # A-shares: Data preparation
+        ├── main_a_stock_step2.sh  # A-shares: Start MCP services
+        ├── main_a_stock_step3.sh  # A-shares: Run trading agent
+        ├── main_crypto_step1.sh   # Crypto: Data preparation
+        ├── main_crypto_step2.sh   # Crypto: Start MCP services
+        ├── main_crypto_step3.sh   # Crypto: Run trading agent
+        └── start_ui.sh            # Start web UI interface
+```
+
+---
+
+# 🚀 Quick Start (Simplified for NASDAQ 100 Hourly Reproduction)
+
+### 📋 Prerequisites
+- Python 3.10+
+- API Keys: OpenAI-compatible (MiniMax/DeepSeek), Alpha Vantage, Jina AI
+
+### ⚡ One-Click Installation
+```bash
+git clone https://github.com/HKUDS/AI-Trader.git
+cd AI-Trader
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+### 🔑 Environment Configuration (`.env`)
+```env
+OPENAI_API_BASE=https://api.minimax.chat/v1
+OPENAI_API_KEY=your_api_key
+
+ALPHAADVANTAGE_API_KEY=your_key
+JINA_API_KEY=your_key
+
+RUNTIME_ENV_PATH=./runtime_env.json
+MATH_HTTP_PORT=8000
+SEARCH_HTTP_PORT=8001
+TRADE_HTTP_PORT=8002
+GETPRICE_HTTP_PORT=8003
+AGENT_MAX_STEP=30
+```
+
+---
+
+# ✏️ Your Modification: Risk-Control Prompt Update
+### File to modify:
+```
+prompts/agent_prompt.py
+```
+
+### Replace `agent_system_prompt` with:
+```python
+agent_system_prompt = """
+You are a stock fundamental analysis trading assistant.
+
+Your core goals are:
+- Think and reason by calling available tools.
+- Maximize portfolio returns UNDER THE CONSTRAINT that maximum drawdown ≤ 5%.
+- Every decision must prioritize risk control.
+- NO full-position trading.
+- Single stock position ≤ 20% of total portfolio.
+
+Thinking standards:
+- Read yesterday's positions and today's prices
+- Update valuation and adjust weights
+- Calculate drawdown to ensure ≤5% limit
+
+Notes:
+- You can execute directly via tools
+- Output {STOP_SIGNAL} when done
+
+Current time: {date}
+Your positions: {positions}
+Stock value: {yesterday_close_price}
+Current buy prices: {today_buy_price}
+"""
+```
+
+---
+
+# ▶️ Full Run Steps (Windows / Mac / Linux)
+
+### Step 1: Prepare data
+```bash
+cd data
+python get_daily_price.py
+python merge_jsonl.py
+cd ..
+```
+
+### Step 2: Start MCP tools (keep open)
+```bash
+cd agent_tools
+python start_mcp_services.py
+```
+
+### Step 3: Run hourly trading agent
+```bash
+python main.py configs/default_config.json
+```
+
+### Step 4: Evaluate performance
+```bash
+cd data
+python calculate_performance.py
+```
+
+---
+
+## 📈 Performance Analysis
+### Metrics for Reproduction
+- **CR**: Cumulative Return
+- **SR**: Sortino Ratio
+- **MDD**: Maximum Drawdown
+
+### Target (Original Paper)
+- MiniMax‑M2: CR=9.56% | SR=4.42 | MDD=-4.92%
+
+### Expected Result After Your Prompt Modification
+- **MDD significantly reduced**
+- **CR slightly lower**
+- **SR improved**
+
+---
+
+## 🛠️ Configuration Guide
+Use `configs/default_config.json` for NASDAQ 100 hourly trading.
+
+---
+
+## 🔌 Third-Party Strategy Integration
+Same as original.
+
+---
+
+## 🚀 Roadmap
+Same as original.
+
+---
+
+## 📞 Support & Community
+Same as original.
+
+---
+
+## 📄 License
+MIT
+
+---
+
+## 🙏 Acknowledgments
+Same as original.
+
+---
+
+## 👥 Administrator
+Same as original.
+
+---
+
+## 🤝 Contribution
+Same as original.
+
+---
+
+## Disclaimer
+Same as original.
+
+---
+
+<div align="center">
+
+**🌟 If this project helps you, please give us a Star!**
+
+[![GitHub stars](https://img.shields.io/github/stars/HKUDS/AI-Trader?style=social)](https://github.com/HKUDS/AI-Trader)
+
+</div>
+
+---
+
+## 🌟Citation
+```python
+@article{fan2025ai,
+  title={AI-Trader: Benchmarking Autonomous Agents in Real-Time Financial Markets},
+  author={Fan, Tianyu and Yang, Yuhao and Jiang, Yangqin and Zhang, Yifei and Chen, Yuxuan and Huang, Chao},
+  journal={arXiv preprint arXiv:2512.10971},
+  year={2025}
+}
+```
+
+<p align="center">
+  <em>❤️ Thanks for visiting ✨ AI-Trader!</em><br>
+</p>
